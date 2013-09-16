@@ -12,31 +12,31 @@
         background: url(photo.jpg);
       }
 
-      #photo.dimmed .overlay {
+      #photo .overlay {
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.5);
+        background: #000;
+        opacity: 0;
+      }
+
+      #photo.dimmed .overlay {
+        opacity: .4;
       }
 
       #photo .hover {
         position: absolute;
-        width: 100px;
-        height: 100px;
         left: 100px;
         top: 100px;
-        background: url(photo.jpg);
-        background-position: -100px -100px;
-        mask: url(#mask);
-        -webkit-mask: url(#mask) top left / cover;
-        -o-mask: url(#mask) top left / cover;
-        -ms-mask: url(#mask) top left / cover;
+        opacity: 0;
       }
 
       #photo .hover:hover {
-        width: 110px;
-        height: 110px;
-        background-position: -110px -110px;
-        background-size: 1100px auto;
+        opacity: 1;
+      }
+
+      #photo .overlay, #photo .hover {
+        transition: opacity .3s;
+        -webkit-transition: opacity .3s;
       }
 
     </style>
@@ -44,19 +44,24 @@
   </head>
   <body>
     <div id="photo">
-      <div class="overlay">
-        <div class="hover"></div>
-      </div>
+      <div class="overlay"></div>
+      <svg class="hover" width="120" height="120">
+        <defs>
+          <pattern id="pat" x="0" y="0" patternUnits="userSpaceOnUse" height="120" width="120">
+            <image x="-112" y="-112" height="1100" width="1100" xlink:href="photo.jpg"></image>
+          </pattern>
+        </defs>
+        <filter id="dropshadow">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+          <feOffset dx="0" dy="0" result="offsetblur"/>
+          <feMerge> 
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <circle  style="filter:url(#dropshadow)" id="top" cx="60" cy="60" r="55" fill="url(#pat)"/>
+      </svg>
     </div>
-
-    <svg width="0" height="0">
-      <defs>
-        <mask id="mask" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
-          <rect width="1" height="1" fill="black" />
-          <circle cx=".5" cy=".5" r=".5" fill="white" />
-        </mask>
-      </defs>
-    </svg>
 
     <script src="hover.js"></script>
   </body>
