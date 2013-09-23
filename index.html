@@ -26,8 +26,8 @@
 
       #photo .hover {
         position: absolute;
-        left: 663px;
-        top: 58px;
+        left: 657px;
+        top: 52px;
         opacity: 0;
       }
 
@@ -50,7 +50,7 @@
       <svg class="hover" width="120" height="120">
         <defs>
           <pattern id="pat" x="0" y="0" patternUnits="userSpaceOnUse" height="120" width="120">
-            <image x="-663" y="-58" width="800" height="480" xlink:href="photo.jpg"></image>
+            <image x="-669" y="-64" width="800" height="480" transform="scale(1.1)" xlink:href="photo.jpg"></image>
           </pattern>
         </defs>
         <filter id="dropshadow">
@@ -61,7 +61,7 @@
             <feMergeNode in="SourceGraphic"/>
           </feMerge>
         </filter>
-        <path
+        <path transform="scale(1.1)"
         style="filter:url(#dropshadow);fill:url(#pat)"
         d="m 18.687822,75.805826 2.525381,-31.567267 c 0,0 0.470905,-8.001779 5.555839,-13.889597 6.313454,0.505076 13.131984,0.252538 13.131984,0.252538 0,0 10.101525,-11.869293 25.758889,-0.757615 14.899751,0.252538 27.274119,0.505077 27.274119,0.505077 0,0 7.197336,-0.252538 5.808377,17.930207 2.020309,1.767768 2.777919,2.272844 2.777919,2.272844 L 97.479721,90.958114 31.567267,89.442886 z"
         id="path3010" />
