@@ -7,12 +7,13 @@
     <style>
       #photo {
         position: relative;
-        width: 1024px;
-        height: 1024px;
-        background: url(photo.jpg);
+        display: inline-block;
       }
 
       #photo .overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
         width: 100%;
         height: 100%;
         background: #000;
@@ -25,8 +26,8 @@
 
       #photo .hover {
         position: absolute;
-        left: 100px;
-        top: 100px;
+        left: 663px;
+        top: 58px;
         opacity: 0;
       }
 
@@ -44,11 +45,12 @@
   </head>
   <body>
     <div id="photo">
+      <img src="photo.jpg">
       <div class="overlay"></div>
       <svg class="hover" width="120" height="120">
         <defs>
           <pattern id="pat" x="0" y="0" patternUnits="userSpaceOnUse" height="120" width="120">
-            <image x="-112" y="-112" height="1100" width="1100" xlink:href="photo.jpg"></image>
+            <image x="-663" y="-58" width="800" height="480" xlink:href="photo.jpg"></image>
           </pattern>
         </defs>
         <filter id="dropshadow">
@@ -59,7 +61,10 @@
             <feMergeNode in="SourceGraphic"/>
           </feMerge>
         </filter>
-        <circle  style="filter:url(#dropshadow)" id="top" cx="60" cy="60" r="55" fill="url(#pat)"/>
+        <path
+        style="filter:url(#dropshadow);fill:url(#pat)"
+        d="m 18.687822,75.805826 2.525381,-31.567267 c 0,0 0.470905,-8.001779 5.555839,-13.889597 6.313454,0.505076 13.131984,0.252538 13.131984,0.252538 0,0 10.101525,-11.869293 25.758889,-0.757615 14.899751,0.252538 27.274119,0.505077 27.274119,0.505077 0,0 7.197336,-0.252538 5.808377,17.930207 2.020309,1.767768 2.777919,2.272844 2.777919,2.272844 L 97.479721,90.958114 31.567267,89.442886 z"
+        id="path3010" />
       </svg>
     </div>
 
