@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width">
     <title>Hover</title>
     <style>
-      #photo {
+      .hoverized {
         position: relative;
         display: inline-block;
       }
 
-      #photo .overlay {
+      .hoverized .overlay {
         position: absolute;
+        z-index: 1;
         left: 0;
         top: 0;
         width: 100%;
@@ -20,54 +21,40 @@
         opacity: 0;
       }
 
-      #photo.dimmed .overlay {
-        opacity: .4;
-      }
-
-      #photo .hover {
+      .hoverized .item {
         position: absolute;
-        left: 663px;
-        top: 58px;
+        z-index: 2;
         opacity: 0;
       }
 
-      #photo .hover:hover {
+      .hoverized .item:hover {
         opacity: 1;
       }
 
-      #photo .overlay, #photo .hover {
+      .hoverized .item:hover ~ .overlay {
+        opacity: .4;
+      }
+
+      .hoverized .overlay, .hoverized .item {
         transition: opacity .3s;
         -webkit-transition: opacity .3s;
       }
-
     </style>
     <script src="jquery-1.10.2.js"></script>
   </head>
   <body>
     <div id="photo">
       <img src="photo.jpg">
-      <div class="overlay"></div>
-      <svg class="hover" width="120" height="120">
-        <defs>
-          <pattern id="pat" x="0" y="0" patternUnits="userSpaceOnUse" height="120" width="120">
-            <image x="-663" y="-58" width="800" height="480" xlink:href="photo.jpg"></image>
-          </pattern>
-        </defs>
-        <filter id="dropshadow">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
-          <feOffset dx="0" dy="0" result="offsetblur"/>
-          <feMerge> 
-            <feMergeNode/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-        <path
-        style="filter:url(#dropshadow);fill:url(#pat)"
-        d="m 18.687822,75.805826 2.525381,-31.567267 c 0,0 0.470905,-8.001779 5.555839,-13.889597 6.313454,0.505076 13.131984,0.252538 13.131984,0.252538 0,0 10.101525,-11.869293 25.758889,-0.757615 14.899751,0.252538 27.274119,0.505077 27.274119,0.505077 0,0 7.197336,-0.252538 5.808377,17.930207 2.020309,1.767768 2.777919,2.272844 2.777919,2.272844 L 97.479721,90.958114 31.567267,89.442886 z"
-        id="path3010" />
-      </svg>
+      <ul>
+        <li data-path="m 681.83254,133.68143 2.52538,-31.56727 c 0,0 0.47091,-8.00178 5.55584,-13.88959 6.31345,0.50507 13.13198,0.25253 13.13198,0.25253 0,0 10.10153,-11.86929 25.75889,-0.75761 14.89975,0.25254 27.27412,0.50508 27.27412,0.50508 0,0 7.19734,-0.25254 5.80838,17.9302 2.02031,1.76777 2.77792,2.27285 2.77792,2.27285 l -4.04061,40.4061 -65.91245,-1.51523 z">
+          Something
+        </li>
+      </ul>
     </div>
 
     <script src="hover.js"></script>
+    <script>
+      $( '#photo' ).hoverize();
+    </script>
   </body>
 </html>
