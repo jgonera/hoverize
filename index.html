@@ -4,38 +4,73 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Hover</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
     <style>
+      body {
+        font-family: "Open Sans", sans-serif;
+        font-size: .8em;
+      }
+
       .hoverized {
         position: relative;
         display: inline-block;
       }
 
-      .hoverized .overlay {
+      .hoverized li {
+        position: absolute;
+        z-index: 2;
+        opacity: 0;
+      }
+
+      .hoverized li div {
+        position: relative;
+      }
+
+      .hoverized li div {
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: .5em .8em;
+        border-radius: 3px;
+      }
+
+      .hoverized li div::before {
+        position: absolute;
+        display: block;
+        top: -6px;
+        left: .8em;
+        width: 0;
+        height: 0;
+        border-width: 0 6px 6px;
+        border-style: solid;
+        border-color: rgba(0, 0, 0, 0.6) transparent;
+        content: "";
+      }
+
+      .hoverized .active {
+        opacity: 1;
+      }
+
+      .hoverized ul {
         position: absolute;
         z-index: 1;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
-        background: #000;
+        background: rgba(0, 0, 0, 0.4);
+
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
         opacity: 0;
       }
 
-      .hoverized .item {
-        position: absolute;
-        z-index: 2;
-        opacity: 0;
-      }
-
-      .hoverized .item:hover {
+      .hoverized.dimmed ul {
         opacity: 1;
       }
 
-      .hoverized .item:hover ~ .overlay {
-        opacity: .4;
-      }
-
-      .hoverized .overlay, .hoverized .item {
+      .hoverized ul, .hoverized .item, .hoverized li div {
         transition: opacity .3s;
         -webkit-transition: opacity .3s;
       }
@@ -47,14 +82,17 @@
       <img src="photo.jpg">
       <ul>
         <li data-path="m 681.83254,133.68143 2.52538,-31.56727 c 0,0 0.47091,-8.00178 5.55584,-13.88959 6.31345,0.50507 13.13198,0.25253 13.13198,0.25253 0,0 10.10153,-11.86929 25.75889,-0.75761 14.89975,0.25254 27.27412,0.50508 27.27412,0.50508 0,0 7.19734,-0.25254 5.80838,17.9302 2.02031,1.76777 2.77792,2.27285 2.77792,2.27285 l -4.04061,40.4061 -65.91245,-1.51523 z">
-          Something
+          <div>Something something</div>
+        </li>
+        <li data-path="m 381.83254,133.68143 2.52538,-31.56727 c 0,0 0.47091,-8.00178 5.55584,-13.88959 6.31345,0.50507 13.13198,0.25253 13.13198,0.25253 0,0 10.10153,-11.86929 25.75889,-0.75761 14.89975,0.25254 27.27412,0.50508 27.27412,0.50508 0,0 7.19734,-0.25254 5.80838,17.9302 2.02031,1.76777 2.77792,2.27285 2.77792,2.27285 l -4.04061,40.4061 -65.91245,-1.51523 z">
+          <div>Something something</div>
         </li>
       </ul>
     </div>
 
     <script src="hover.js"></script>
     <script>
-      $( '#photo' ).hoverize();
+      $('#photo').hoverize();
     </script>
   </body>
 </html>
