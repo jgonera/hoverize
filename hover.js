@@ -82,6 +82,9 @@
           left: Math.round(box.x) - 5,
           top: Math.round(box.y) - 5
         });
+
+        var $div = $li.find('div');
+        $div.css('margin-left', ($svg.width() - $div.outerWidth()) / 2);
       });
     });
   };

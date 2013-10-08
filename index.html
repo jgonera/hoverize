@@ -20,6 +20,8 @@
         position: absolute;
         z-index: 2;
         opacity: 0;
+        /* don't mouseleave too fast */
+        padding: 0 0 1em;
       }
 
       .hoverized li div {
@@ -31,13 +33,15 @@
         color: #fff;
         padding: .5em .8em;
         border-radius: 3px;
+        margin: 0 auto;
       }
 
       .hoverized li div::before {
         position: absolute;
         display: block;
         top: -6px;
-        left: .8em;
+        left: 50%;
+        margin-left: -6px;
         width: 0;
         height: 0;
         border-width: 0 6px 6px;
